@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.VisualScripting;
 
 public class LevelBtnScript : ProjectBehaviourScript
 {
-    [SerializeField] private GameObject lockObj, unlockObj;
+    [SerializeField] private GameObject lockObj;
+    [SerializeField] private GameObject unlockObj;
     [SerializeField] private Image[] starArray;
     [SerializeField] private TextMeshProUGUI levelIndexText;
-    [SerializeField] private Color lockColor, unlockColor;
+    [SerializeField] private Color lockColor;
+    [SerializeField] private Color unlockColor;
     [SerializeField] private Button btn;
     
 
@@ -63,4 +66,14 @@ public class LevelBtnScript : ProjectBehaviourScript
         SceneManager.LoadScene($"Level_{levelIndex}");
         LevelSystemManager.Instance.CurrentLevel = levelIndex - 1;
     }
+    #region
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        lockObj = GameObject.Find("Lock");
+        unlockObj = GameObject.Find("Unlock");
+        levelIndexText = GameObject.Find("NameLevel").GetComponent<TextMeshProUGUI>();
+        btn=GameObject.Find("LevelItemBtn").GetComponent<Button>(); 
+    }
+    #endregion
 }

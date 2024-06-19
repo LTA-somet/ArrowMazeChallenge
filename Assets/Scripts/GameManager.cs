@@ -89,10 +89,17 @@ public class GameManager : ProjectBehaviourScript
         LevelSystemManager.Instance.LevelComplete(0);
     }
 
-
+    #region
     protected override void LoadComponent()
     {
-        base.LoadComponent();
-       this.timeCountDown = 45;
+        homeBtn = GameObject.Find("HomeBtn").GetComponent<Button>();
+        resetBtn = GameObject.Find("ResetBtn").GetComponent<Button>();
+        textTime = GameObject.Find("TimeTxt").GetComponent<TextMeshProUGUI>();
+        winObject = GameObject.Find("Wingame");
+        loseObject = GameObject.Find("Losegame");
+
+        timeCountDown = 45;
+        codition_1 = false;
     }
+    #endregion
 }
